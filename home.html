@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<h1> Welcome to BoilerEvents! </h1>
+<br>
+BoilerEvents is an easy to use event management application catered specifically to events hosted at Purdue University. <br>
+It streamlines your organization's check-in process and allows you to send out promotional emails to increase your reach and boost your marketing capabilities. 
+<br><br>
+<h2>Here is all your Event Management Data: </h2>
+<br>
+<body>
+    {% if data %}
+        <table border="1">
+            <thead bgcolor="goldenrod">
+                <tr>
+                    <!-- Iterate through column names -->
+                    {% for column_name in data.0.keys %}
+                        <th>{{ column_name }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <tr>
+                        <!-- Iterate through row values -->
+                        {% for value in row.values %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+
+{% endblock %}

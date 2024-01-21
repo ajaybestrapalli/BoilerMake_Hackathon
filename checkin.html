@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br><br>
+<form method="POST">
+    {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn" style="background-color:goldenrod;"> Check-In </button>
+  </form>
+
+<br>
+
+Here are the attendees for today's Event!
+
+<br>
+
+<body>
+    {% if data %}
+        <table border="1">
+            <thead bgcolor="goldenrod">
+                <tr>
+                    <!-- Iterate through column names -->
+                    {% for column_name in data.0.keys %}
+                        <th>{{ column_name }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <tr>
+                        <!-- Iterate through row values -->
+                        {% for value in row.values %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+
+
+{% endblock %}
